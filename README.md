@@ -7,11 +7,15 @@ There are several projects aiming to create bindings between the P5.js lib and R
 
 ### Progress
 
-✓ P5 global constants
-✓ P5 mutable globals
-✓ P5 static functions
-✓ P5 class instances
-x P5 instance methods
+- [x] P5 global constants
+
+- [x] P5 mutable globals
+
+- [x] P5 static functions
+
+- [x] P5 class instances
+
+- [ ] P5 instance methods
 
 ### Usage
 
