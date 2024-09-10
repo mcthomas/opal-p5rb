@@ -3,7 +3,7 @@ Ruby bindings to P5.js via Opal
 
 ## Purpose
 
-There are several projects aiming to create bindings between the P5.js lib and Ruby, with varying degrees of success.  While it has been proven to be easy enough to map static P5 functions and top-level variables to rb using Opal, I wanted to also be able to instantiate P5 classes and use those objects in the rb context.  The currently incomplete step in this process, is finding a way to call P5 methods on instances of P5 objects in the rb context (see defunct `call_p5_method()`.  As of now, I can only instantiate them and pass around the references.  p5.Vector is included, and utilized in the example sketch below.
+There are several projects aiming to create bindings between the P5.js lib and Ruby, with varying degrees of success.  While it has been proven to be easy enough to map static P5 functions and top-level variables to rb using Opal, I wanted to also be able to instantiate P5 classes (e.g. p5.Vector) and use those objects in the rb context.  The currently incomplete step in this process, is finding a way to access P5 members methods on instances of P5 objects in the rb context (see `call_p5_method()`.  As of now, I can only instantiate them and pass around the references.  For many sketches, this may not be an issue.
 
 ### Progress
 
@@ -13,15 +13,19 @@ There are several projects aiming to create bindings between the P5.js lib and R
 
 - [x] P5 static functions
 
-- [x] P5 class instances
+- [x] P5 class instantiation
+
+- [ ] P5 instance members
 
 - [ ] P5 instance methods
 
 ### Usage
 
-Create your sketch at the bottom of the file `wrapper.rb`, where designated.  Then launch a local server from the working directory (e.g. `python -m http.server`).  Errors persist when moving to a new file and including the bindings module, so I've isolated the work to a single file.
+Create your sketch in `sketch.rb` or in a new file which you include.  Then launch a local server from the working directory (e.g. `python -m http.server`).
 
-### Example Sketch _(also in src)_
+_js console errors will appear for any event functions that you don't define in your sketch, e.g. mouseMoved()_
+
+### Example Sketch _(in src at ./sketch.rb)_
 
 ![cubes](./sketch.gif)
 
