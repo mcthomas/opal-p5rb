@@ -20,7 +20,6 @@ module P5
   # EVENT FUNCTIONS (REQUIRED)
 
   %x{
-    window.preload = function() { Opal.top.$preload(); };
     window.setup = function() { Opal.top.$setup(); };
     window.draw = function() { Opal.top.$draw(); };
     window.setMoveThreshold = function() { Opal.top.$setMoveThreshold(); };
