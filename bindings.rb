@@ -276,20 +276,37 @@ module P5
     end
   end
 
+    # Temporary native Javascipt API partial Audio class replacement to the passthrough to P5.js, to provide a symantically similar Audio class as exists in P5.js via MediaElement, because P5.js instance methods are currently inaccessible in the Ruby context via these bindings
   class Audio
     def initialize(src, callback = nil)
       @src = src
       @callback = callback
+      @audio_instance = `new Audio(#{@src})`
+      `#{@audio_instance}.oncanplay = #{@callback}` unless @callback.nil?
     end
   
-    def to_js
-      if @callback.nil?
-        "createAudio(#{@src})"
-      else
-        "createAudio(#{@src}, #{@callback})"
-      end
+    def play
+      `#{@audio_instance}.play()`
     end
-  end
+  
+    def pause
+      `#{@audio_instance}.pause()`
+    end
+
+    def loop
+      `#{@audio_instance}.loop = true`
+    end
+
+    def noLoop
+      `#{@audio_instance}.loop = false`
+    end
+  
+    def stop
+      `#{@audio_instance}.pause()`
+      `#{@audio_instance}.currentTime = 0`
+    end
+  
+  end  
   
   class Capture
     def initialize(type, callback = nil)
@@ -804,12 +821,9 @@ module P5
     end
   end
 
-  def createAudio(src, callback = nil)
-    if callback.nil?
-      P5::Audio.new(`src`)
-    else
-      P5::Audio.new(`src`, `callback`)
-    end
+  # Temporary factory method to allow symantically similar audio instantiation as P5.js, while P5.js instance methods are still inaccessible in the Ruby context via these bindings
+  def self.createAudio(src, callback = nil)
+    Audio.new(src, callback)
   end
 
   def createCapture(type, callback = nil)
