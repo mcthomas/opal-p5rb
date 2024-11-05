@@ -3,7 +3,7 @@ Ruby bindings to P5.js via Opal
 
 ## Purpose
 
-There are several projects aiming to create bindings between the P5.js lib and Ruby, with varying degrees of success.  While it has been proven to be easy enough to map static P5 functions and top-level variables to rb using Opal, I wanted to also be able to instantiate P5 classes (e.g. p5.Vector) and use those objects in the rb context.  The currently incomplete step in this process, is finding a way to access instance members and methods on instances of P5 objects in the rb context (see `call_p5_method()`).  As of now, I can only instantiate them and pass around the references.  For many sketches, this may not be an issue.
+There are several projects aiming to create bindings between the P5.js lib and Ruby via Opal, with varying degrees of success.  I wanted to avoid having to explicitly embed js within the rb context in my sketches.  While it has been proven to be easy enough to map static P5 functions and top-level variables to rb using Opal, I wanted to take this further and have the ability to instantiate P5 classes (e.g. p5.Vector) and use those objects in the rb context.  The currently incomplete step in this process, is finding a way to access instance members and methods on instances of P5 objects in the rb context (see `call_p5_method()`).  As of now, I can only instantiate them and pass around the references.  For many sketches, this may not be an issue, since they most often lean on static drawing functions at each frame.  In some cases where P5 instance members or methods are needed, the best workaround at present is to use the instance within a new class that stands in for any missing functionality (as exemplified below).
 
 ### Progress
 

@@ -276,7 +276,7 @@ module P5
     end
   end
 
-    # Temporary native Javascipt API partial Audio class replacement to the passthrough to P5.js, to provide a symantically similar Audio class as exists in P5.js via MediaElement, because P5.js instance methods are currently inaccessible in the Ruby context via these bindings
+  # Temporary native Javascipt API partial Audio class replacement to the passthrough to P5.js, to provide a symantically similar Audio class as exists in P5.js via MediaElement, because P5.js instance methods are currently inaccessible in the Ruby context via these bindings
   class Audio
     def initialize(src, callback = nil)
       @src = src
